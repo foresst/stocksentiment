@@ -4,6 +4,10 @@ import logging
 from utilities import *
 
 def main():
+    crawlReddit()
+    pass
+
+def crawlReddit():
     user_vars = GetEnvironmentVariables()
 
     # handler = logging.StreamHandler()
@@ -27,7 +31,7 @@ def main():
             for post in posts:
                 print(post.title)
                 comments = client.get_post_comments(post)
-                save_comments_to_csv(sub, sort, comments, post.name)
+                save_comments_to_csv(sub, sort, comments, post)
 
 if __name__ == "__main__":
     main()
