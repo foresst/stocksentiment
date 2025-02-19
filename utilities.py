@@ -1,6 +1,9 @@
 import csv
 import os
 import time
+import re
+import stock_types
+import string
 
 def save_posts_to_csv(sub, sort, data):
     dirname = make_dirname(sub, sort)
@@ -84,3 +87,30 @@ def get_filenames(structure, current_path=''):
         else:
             filenames.extend(get_filenames(value, path))
     return filenames
+
+def normalize_company_name(name):
+    """
+    Normalizes a company name by removing common prefixes and suffixes
+    and returns only the first two words
+    """
+    # Convert to lowercase for comparison
+    name = name.lower().strip()
+    
+    # Remove punctuation (except & and .) and numbers
+    name = re.sub(r"[^\w\s]", "", name)
+    name = re.sub(r'\d+', '', name)
+    
+    # Split into words
+    words = name.split()
+    
+    # Remove common prefixes/suffixes
+    words = [w for w in words if w not in stock_types.COMMON_PREFIXES]
+    
+    # Return only first two words
+    return ' '.join(words[:2])
+
+def get_company_name(name):
+    """
+    Extracts the company name from a given string
+    """
+    return normalize_company_name(name)
