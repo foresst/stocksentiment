@@ -9,7 +9,8 @@ def GetEnvironmentVariables():
         "client_secret": os.getenv("REDDIT_CLIENT_SECRET"),
         "user_agent": os.getenv("REDDIT_USER_AGENT"),
         "username": os.getenv("REDDIT_USERNAME"),
-        "password": os.getenv("REDDIT_PASSWORD")
+        "password": os.getenv("REDDIT_PASSWORD"),
+        "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY")
     }
     return variables
 

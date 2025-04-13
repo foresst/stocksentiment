@@ -10,13 +10,6 @@ def main():
 def crawlReddit():
     user_vars = GetEnvironmentVariables()
 
-    # handler = logging.StreamHandler()
-    # handler.setLevel(logging.DEBUG)
-    # for logger_name in ("praw", "prawcore"):
-    #     logger = logging.getLogger(logger_name)
-    #     logger.setLevel(logging.DEBUG)
-    #     logger.addHandler(handler)
-
     client = RedditClient(user_vars)
     subscriptions = client.get_subscriptions()
     print(subscriptions)
